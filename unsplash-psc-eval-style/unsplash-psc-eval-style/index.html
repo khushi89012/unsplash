@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beautiful free Images & Pictures</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div id="container">
+    
+ 
+      </div>
+ 
+      <div id="sidebar">
+        
+ 
+      </div>
+
+      <div id="unsplash-bar">
+       <div>
+         <h1>Unsplash</h1>
+         
+         <h3>The internet’s source of freely-usable images.
+          Powered by creators everywhere.</h3>
+       </div>
+      </div>
+<br>
+      <div id="main">
+
+      </div>
+    </div>
+  </body>
+</html>
+<script type = "module">
+import sidebar from "./components/sidebar.js"
+let sidebar_div = document.getElementById("sidebar");
+sidebar_div.innerHTML = sidebar()
+
+ //Successfully imported nav/side bar on dom .......
+
+
+import { makeapiCall , appendCall } from "./scripts/main.js";
+
+let api = "jZK2Sfjwtplt4eYpWMVexI4RkgnPfdrFGQssO23QQ1s"
+let res = await makeapiCall(`https://api.unsplash.com/photos/?client_id=${api}`)
+
+///successfully imported logical code and used it for fetch....
+
+
+
+let parent = document.getElementById("main");
+
+appendCall(res,parent)
+let search_value = document.getElementById("search");
+search_value.addEventListener("keypress", (e)=>{
+  if(e.key === "Enter"){
+    let input = document.getElementById("search").value;
+    localStorage.setItem("search_term",input)
+    window.location.href= "search.html" 
+  }
+
+   // we are setting value to localstorage and we are sending user to search page /////
+})
+
+
+
+// console.log(res)
+// console.log(sidebar_div)
+</script>

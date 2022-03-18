@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div id="sidebar">
+        
+ 
+    </div>
+
+    <div id="main">
+      <!--No need to add sidebar here, directly display search results here only-->
+    </div>
+  </body>
+</html>
+<script type = "module">
+  import sidebar from "./components/sidebar.js"
+  let sidebar_div = document.getElementById("sidebar")
+  sidebar_div.innerHTML = sidebar()
+
+
+import { makeapiCall , appendCall } from "./scripts/main.js";
+
+let search = localStorage.getItem("search_term");
+
+let api = "jZK2Sfjwtplt4eYpWMVexI4RkgnPfdrFGQssO23QQ1s"
+
+let parent = document.getElementById("main")
+let res = await makeapiCall(`https://api.unsplash.com/search/photos/?query=${search}&client_id=${api}`)
+
+appendCall(res.results,parent)//addind .results is sometimes is big error because no data show
+
+
+
+
+
+</script>
+
